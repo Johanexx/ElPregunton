@@ -1,59 +1,115 @@
 ```css
+/* ================================
+   CONFIGURACIÓN GENERAL
+================================ */
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #080b16;
-    color: #ffffff;
     min-height: 100vh;
+    padding: 20px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #080b16;
+    color: #ffffff;
 }
+
+
+/* ================================
+   CONTENEDOR DEL JUEGO
+================================ */
 
 .game {
     width: min(760px, 100%);
+
+    padding: 28px;
 
     background: #11172a;
 
     border: 1px solid #293252;
     border-radius: 24px;
 
-    padding: 28px;
-
     box-shadow: 0 20px 60px #0008;
 }
 
 
-/* =========================
+/* ================================
    TITULOS
-========================= */
+================================ */
 
 h1 {
     margin: 0;
+
     font-size: 42px;
+
     color: #67e8f9;
+
+    letter-spacing: 1px;
 }
 
 .subtitle {
+    margin-top: 8px;
+
     color: #aab4d0;
-    margin-top: 6px;
+
+    font-size: 18px;
+}
+
+.description {
+    color: #d5dbeb;
+
+    line-height: 1.6;
+
+    margin: 20px auto;
+
+    max-width: 600px;
 }
 
 
-/* =========================
-   PANTALLA SUPERIOR
-========================= */
+/* ================================
+   PANTALLA DE INICIO / FINAL
+================================ */
+
+.center {
+    text-align: center;
+
+    padding: 30px 10px;
+}
+
+.emoji {
+    font-size: 60px;
+
+    margin-bottom: 10px;
+}
+
+.small {
+    margin-top: 18px;
+
+    color: #9ca8c7;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* ================================
+   INFORMACIÓN DEL JUEGO
+================================ */
 
 .top {
     display: flex;
+
     justify-content: space-between;
+
     gap: 10px;
 
     flex-wrap: wrap;
@@ -62,59 +118,67 @@ h1 {
 }
 
 .badge {
+    padding: 8px 13px;
+
     background: #1b2542;
 
     border-radius: 999px;
 
-    padding: 8px 13px;
-
     color: #dbeafe;
+
+    font-size: 14px;
 }
 
 
-/* =========================
+/* ================================
    BARRA DE PROGRESO
-========================= */
+================================ */
 
 .bar {
+    width: 100%;
+
     height: 10px;
+
+    margin-bottom: 24px;
 
     background: #252e49;
 
     border-radius: 20px;
 
     overflow: hidden;
-
-    margin-bottom: 24px;
 }
 
 .fill {
-    height: 100%;
+    width: 0%;
 
-    width: 0;
+    height: 100%;
 
     background: #67e8f9;
 
-    transition: 0.25s;
+    border-radius: 20px;
+
+    transition: width 0.3s ease;
 }
 
 
-/* =========================
+/* ================================
    PREGUNTA
-========================= */
+================================ */
 
 .question {
+    margin: 20px 0;
+
     font-size: 25px;
 
-    line-height: 1.35;
+    line-height: 1.4;
 
-    margin: 20px 0;
+    color: #ffffff;
 }
 
 
-/* =========================
+/* ================================
    RESPUESTAS
-========================= */
+================================ */
 
 .answers {
     display: grid;
@@ -123,15 +187,17 @@ h1 {
 }
 
 .answer {
-    border: 1px solid #34405f;
-
-    background: #18213a;
-
-    color: white;
+    width: 100%;
 
     padding: 16px;
 
+    border: 1px solid #34405f;
+
     border-radius: 14px;
+
+    background: #18213a;
+
+    color: #ffffff;
 
     text-align: left;
 
@@ -139,13 +205,22 @@ h1 {
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
 }
 
-.answer:hover {
+.answer:hover:not(:disabled) {
+    transform: translateY(-2px);
+
     border-color: #67e8f9;
 
-    transform: translateY(-1px);
+    background: #202b49;
+}
+
+.answer:disabled {
+    cursor: default;
 }
 
 .answer.correct {
@@ -160,14 +235,10 @@ h1 {
     border-color: #fb7185;
 }
 
-.answer:disabled {
-    cursor: default;
-}
 
-
-/* =========================
-   MENSAJES
-========================= */
+/* ================================
+   MENSAJES DE RESPUESTA
+================================ */
 
 .feedback {
     min-height: 30px;
@@ -175,31 +246,33 @@ h1 {
     margin: 18px 0;
 
     font-weight: bold;
+
+    line-height: 1.4;
 }
 
-.good {
+.feedback.good {
     color: #34d399;
 }
 
-.bad {
+.feedback.bad {
     color: #fb7185;
 }
 
 
-/* =========================
+/* ================================
    BOTONES
-========================= */
+================================ */
 
 button.main {
-    background: #67e8f9;
-
-    color: #061018;
+    padding: 14px 22px;
 
     border: 0;
 
     border-radius: 13px;
 
-    padding: 14px 22px;
+    background: #67e8f9;
+
+    color: #061018;
 
     font-size: 17px;
 
@@ -207,7 +280,9 @@ button.main {
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 button.main:hover {
@@ -216,26 +291,18 @@ button.main:hover {
     box-shadow: 0 0 20px #67e8f955;
 }
 
-
-/* =========================
-   ELEMENTOS GENERALES
-========================= */
-
-.hidden {
-    display: none;
+button.main:active {
+    transform: scale(0.98);
 }
 
-.center {
-    text-align: center;
 
-    padding: 30px 10px;
-}
-
-.emoji {
-    font-size: 60px;
-}
+/* ================================
+   PUNTUACIÓN FINAL
+================================ */
 
 .score {
+    margin: 10px 0;
+
     font-size: 50px;
 
     font-weight: bold;
@@ -243,23 +310,30 @@ button.main:hover {
     color: #67e8f9;
 }
 
-.small {
-    color: #9ca8c7;
 
-    font-size: 14px;
+/* ================================
+   OCULTAR ELEMENTOS
+================================ */
 
-    margin-top: 18px;
+.hidden {
+    display: none !important;
 }
 
 
-/* =========================
+/* ================================
    RESPONSIVE
-========================= */
+================================ */
 
 @media (max-width: 600px) {
 
+    body {
+        padding: 12px;
+    }
+
     .game {
         padding: 20px;
+
+        border-radius: 18px;
     }
 
     h1 {
@@ -271,7 +345,13 @@ button.main:hover {
     }
 
     .answer {
+        padding: 14px;
+
         font-size: 16px;
+    }
+
+    .badge {
+        font-size: 13px;
     }
 
 }
