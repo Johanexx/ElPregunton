@@ -4,18 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Code Escape - Juego académico basado en ISO/IEC 25010">
     <title>Code Escape - ISO 25010</title>
 
-    <!-- Archivo de estilos -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
-    <div class="game">
+    <main class="game">
 
         <!-- PANTALLA DE INICIO -->
-        <div id="start" class="center">
+        <section id="start" class="center">
+
             <div class="emoji">💻</div>
 
             <h1>CODE ESCAPE</h1>
@@ -24,23 +25,24 @@
                 Escapa resolviendo desafíos de programación.
             </p>
 
-            <p>
-                Responde 5 preguntas. Cada acierto suma puntos.
-                No hay recargas: todo ocurre en la misma página.
+            <p class="description">
+                Responde 5 preguntas. Cada respuesta correcta
+                suma puntos. ¡Demuestra tus conocimientos!
             </p>
 
-            <button class="main" id="startBtn">
+            <button type="button" class="main" id="startBtn">
                 COMENZAR
             </button>
 
             <p class="small">
                 Proyecto académico · ISO/IEC 25010 · Eficiencia del desempeño
             </p>
-        </div>
+
+        </section>
 
 
         <!-- PANTALLA DEL JUEGO -->
-        <div id="game" class="hidden">
+        <section id="game" class="hidden">
 
             <h1>CODE ESCAPE</h1>
 
@@ -60,29 +62,42 @@
 
             </div>
 
+
+            <!-- BARRA DE PROGRESO -->
             <div class="bar">
                 <div class="fill" id="fill"></div>
             </div>
 
+
+            <!-- PREGUNTA -->
             <div class="question" id="question"></div>
 
+
+            <!-- RESPUESTAS -->
             <div class="answers" id="answers"></div>
 
+
+            <!-- MENSAJE -->
             <div
                 class="feedback"
                 id="feedback"
                 aria-live="polite">
             </div>
 
-            <button class="main hidden" id="nextBtn">
+
+            <!-- SIGUIENTE -->
+            <button
+                type="button"
+                class="main hidden"
+                id="nextBtn">
                 SIGUIENTE →
             </button>
 
-        </div>
+        </section>
 
 
         <!-- PANTALLA FINAL -->
-        <div id="end" class="center hidden">
+        <section id="end" class="center hidden">
 
             <div class="emoji">🏆</div>
 
@@ -96,20 +111,25 @@
 
             <p id="finalText"></p>
 
-            <button class="main" id="restartBtn">
+            <button
+                type="button"
+                class="main"
+                id="restartBtn">
                 JUGAR DE NUEVO
             </button>
 
             <p class="small">
-                El juego actualiza las preguntas sin recargar la página.
+                El juego funciona completamente en el navegador
+                sin necesidad de recargar la página.
             </p>
 
-        </div>
+        </section>
 
-    </div>
+    </main>
 
-    <!-- Archivo JavaScript -->
-    <script src="script.js"></script>
+
+    <!-- JavaScript -->
+    <script src="./script.js"></script>
 
 </body>
 </html>
