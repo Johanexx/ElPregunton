@@ -1,0 +1,278 @@
+```css
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #080b16;
+    color: #ffffff;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.game {
+    width: min(760px, 100%);
+
+    background: #11172a;
+
+    border: 1px solid #293252;
+    border-radius: 24px;
+
+    padding: 28px;
+
+    box-shadow: 0 20px 60px #0008;
+}
+
+
+/* =========================
+   TITULOS
+========================= */
+
+h1 {
+    margin: 0;
+    font-size: 42px;
+    color: #67e8f9;
+}
+
+.subtitle {
+    color: #aab4d0;
+    margin-top: 6px;
+}
+
+
+/* =========================
+   PANTALLA SUPERIOR
+========================= */
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin: 24px 0 12px;
+}
+
+.badge {
+    background: #1b2542;
+
+    border-radius: 999px;
+
+    padding: 8px 13px;
+
+    color: #dbeafe;
+}
+
+
+/* =========================
+   BARRA DE PROGRESO
+========================= */
+
+.bar {
+    height: 10px;
+
+    background: #252e49;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-bottom: 24px;
+}
+
+.fill {
+    height: 100%;
+
+    width: 0;
+
+    background: #67e8f9;
+
+    transition: 0.25s;
+}
+
+
+/* =========================
+   PREGUNTA
+========================= */
+
+.question {
+    font-size: 25px;
+
+    line-height: 1.35;
+
+    margin: 20px 0;
+}
+
+
+/* =========================
+   RESPUESTAS
+========================= */
+
+.answers {
+    display: grid;
+
+    gap: 12px;
+}
+
+.answer {
+    border: 1px solid #34405f;
+
+    background: #18213a;
+
+    color: white;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    text-align: left;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.answer:hover {
+    border-color: #67e8f9;
+
+    transform: translateY(-1px);
+}
+
+.answer.correct {
+    background: #123c32;
+
+    border-color: #34d399;
+}
+
+.answer.wrong {
+    background: #4a1f2a;
+
+    border-color: #fb7185;
+}
+
+.answer:disabled {
+    cursor: default;
+}
+
+
+/* =========================
+   MENSAJES
+========================= */
+
+.feedback {
+    min-height: 30px;
+
+    margin: 18px 0;
+
+    font-weight: bold;
+}
+
+.good {
+    color: #34d399;
+}
+
+.bad {
+    color: #fb7185;
+}
+
+
+/* =========================
+   BOTONES
+========================= */
+
+button.main {
+    background: #67e8f9;
+
+    color: #061018;
+
+    border: 0;
+
+    border-radius: 13px;
+
+    padding: 14px 22px;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+button.main:hover {
+    transform: scale(1.03);
+
+    box-shadow: 0 0 20px #67e8f955;
+}
+
+
+/* =========================
+   ELEMENTOS GENERALES
+========================= */
+
+.hidden {
+    display: none;
+}
+
+.center {
+    text-align: center;
+
+    padding: 30px 10px;
+}
+
+.emoji {
+    font-size: 60px;
+}
+
+.score {
+    font-size: 50px;
+
+    font-weight: bold;
+
+    color: #67e8f9;
+}
+
+.small {
+    color: #9ca8c7;
+
+    font-size: 14px;
+
+    margin-top: 18px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    .game {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .question {
+        font-size: 21px;
+    }
+
+    .answer {
+        font-size: 16px;
+    }
+
+}
+```
