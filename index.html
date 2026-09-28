@@ -1,94 +1,116 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Code Escape - ISO 25010</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#080b16;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-.game{width:min(760px,100%);background:#11172a;border:1px solid #293252;border-radius:24px;padding:28px;box-shadow:0 20px 60px #0008}
-h1{margin:0;font-size:42px;color:#67e8f9}.subtitle{color:#aab4d0;margin-top:6px}.top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:24px 0 12px}.badge{background:#1b2542;border-radius:999px;padding:8px 13px;color:#dbeafe}
-.bar{height:10px;background:#252e49;border-radius:20px;overflow:hidden;margin-bottom:24px}.fill{height:100%;width:0;background:#67e8f9;transition:.25s}
-.question{font-size:25px;line-height:1.35;margin:20px 0}.answers{display:grid;gap:12px}.answer{border:1px solid #34405f;background:#18213a;color:white;padding:16px;border-radius:14px;text-align:left;font-size:17px;cursor:pointer;transition:.2s}.answer:hover{border-color:#67e8f9;transform:translateY(-1px)}.answer.correct{background:#123c32;border-color:#34d399}.answer.wrong{background:#4a1f2a;border-color:#fb7185}.answer:disabled{cursor:default}
-.feedback{min-height:30px;margin:18px 0;font-weight:bold}.good{color:#34d399}.bad{color:#fb7185}
-button.main{background:#67e8f9;color:#061018;border:0;border-radius:13px;padding:14px 22px;font-size:17px;font-weight:bold;cursor:pointer}.hidden{display:none}
-.center{text-align:center;padding:30px 10px}.score{font-size:50px;font-weight:bold;color:#67e8f9}.small{color:#9ca8c7;font-size:14px;margin-top:18px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Escape - ISO 25010</title>
+
+    <!-- Archivo de estilos -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="game">
-  <div id="start" class="center">
-    <div style="font-size:60px">💻</div>
-    <h1>CODE ESCAPE</h1>
-    <p class="subtitle">Escapa resolviendo desafíos de programación.</p>
-    <p>Responde 5 preguntas. Cada acierto suma puntos. No hay recargas: todo ocurre en la misma página.</p>
-    <button class="main" id="startBtn">COMENZAR</button>
-    <p class="small">Proyecto académico · ISO/IEC 25010 · Eficiencia del desempeño</p>
-  </div>
 
-  <div id="game" class="hidden">
-    <h1>CODE ESCAPE</h1>
-    <div class="top">
-      <span class="badge" id="level">Nivel 1/5</span>
-      <span class="badge">⭐ <span id="score">0</span> pts</span>
-      <span class="badge">⏱️ <span id="time">30</span>s</span>
+    <div class="game">
+
+        <!-- PANTALLA DE INICIO -->
+        <div id="start" class="center">
+            <div class="emoji">💻</div>
+
+            <h1>CODE ESCAPE</h1>
+
+            <p class="subtitle">
+                Escapa resolviendo desafíos de programación.
+            </p>
+
+            <p>
+                Responde 5 preguntas. Cada acierto suma puntos.
+                No hay recargas: todo ocurre en la misma página.
+            </p>
+
+            <button class="main" id="startBtn">
+                COMENZAR
+            </button>
+
+            <p class="small">
+                Proyecto académico · ISO/IEC 25010 · Eficiencia del desempeño
+            </p>
+        </div>
+
+
+        <!-- PANTALLA DEL JUEGO -->
+        <div id="game" class="hidden">
+
+            <h1>CODE ESCAPE</h1>
+
+            <div class="top">
+
+                <span class="badge" id="level">
+                    Nivel 1/5
+                </span>
+
+                <span class="badge">
+                    ⭐ <span id="score">0</span> pts
+                </span>
+
+                <span class="badge">
+                    ⏱️ <span id="time">30</span>s
+                </span>
+
+            </div>
+
+            <div class="bar">
+                <div class="fill" id="fill"></div>
+            </div>
+
+            <div class="question" id="question"></div>
+
+            <div class="answers" id="answers"></div>
+
+            <div
+                class="feedback"
+                id="feedback"
+                aria-live="polite">
+            </div>
+
+            <button class="main hidden" id="nextBtn">
+                SIGUIENTE →
+            </button>
+
+        </div>
+
+
+        <!-- PANTALLA FINAL -->
+        <div id="end" class="center hidden">
+
+            <div class="emoji">🏆</div>
+
+            <h1>¡ESCAPASTE!</h1>
+
+            <p>Tu puntuación:</p>
+
+            <div class="score" id="finalScore">
+                0
+            </div>
+
+            <p id="finalText"></p>
+
+            <button class="main" id="restartBtn">
+                JUGAR DE NUEVO
+            </button>
+
+            <p class="small">
+                El juego actualiza las preguntas sin recargar la página.
+            </p>
+
+        </div>
+
     </div>
-    <div class="bar"><div class="fill" id="fill"></div></div>
-    <div class="question" id="question"></div>
-    <div class="answers" id="answers"></div>
-    <div class="feedback" id="feedback" aria-live="polite"></div>
-    <button class="main hidden" id="nextBtn">SIGUIENTE →</button>
-  </div>
 
-  <div id="end" class="center hidden">
-    <div style="font-size:60px">🏆</div>
-    <h1>¡ESCAPASTE!</h1>
-    <p>Tu puntuación:</p>
-    <div class="score" id="finalScore">0</div>
-    <p id="finalText"></p>
-    <button class="main" id="restartBtn">JUGAR DE NUEVO</button>
-    <p class="small">El juego actualiza las preguntas sin recargar la página.</p>
-  </div>
-</div>
+    <!-- Archivo JavaScript -->
+    <script src="script.js"></script>
 
-<script>
-const questions=[
- {q:"¿Qué lenguaje se ejecuta principalmente en el navegador?",a:["Java","Python","JavaScript","C++"],c:2},
- {q:"¿Qué etiqueta HTML se usa para crear un enlace?",a:["&lt;link&gt;","&lt;a&gt;","&lt;url&gt;","&lt;href&gt;"],c:1},
- {q:"¿Qué estructura permite repetir código mientras una condición sea verdadera?",a:["if","switch","while","class"],c:2},
- {q:"¿Qué tecnología se utiliza para dar estilos a una página web?",a:["HTML","CSS","SQL","JSON"],c:1},
- {q:"¿Qué método de JavaScript convierte un texto JSON en un objeto?",a:["JSON.parse()","JSON.object()","JSON.convert()","JSON.toObject()"],c:0}
-];
-
-let index=0,score=0,time=30,timer=null,answered=false;
-const $=id=>document.getElementById(id);
-function start(){
- index=0;score=0;$("start").classList.add("hidden");$("end").classList.add("hidden");$("game").classList.remove("hidden");load();
-}
-function load(){
- clearInterval(timer); answered=false; time=30;
- $("level").textContent=`Nivel ${index+1}/5`; $("score").textContent=score; $("time").textContent=time;
- $("fill").style.width=`${index/5*100}%`; $("question").textContent=questions[index].q;
- $("feedback").textContent="";$("feedback").className="feedback";$("nextBtn").classList.add("hidden");
- $("answers").innerHTML="";
- questions[index].a.forEach((ans,i)=>{
-   const b=document.createElement("button");b.className="answer";b.innerHTML=`${String.fromCharCode(65+i)}) ${ans}`;
-   b.addEventListener("click",()=>answer(i,b));$("answers").appendChild(b);
- });
- timer=setInterval(()=>{time--; $("time").textContent=time;if(time<=0){clearInterval(timer);if(!answered) answer(-1,null)}},1000);
-}
-function answer(choice,clicked){
- if(answered)return;answered=true;clearInterval(timer);
- const correct=questions[index].c;
- [...$("answers").children].forEach((b,i)=>{b.disabled=true;if(i===correct)b.classList.add("correct")});
- if(choice===correct){score+=100;$("score").textContent=score;$("feedback").textContent="✅ ¡Correcto! +100 puntos";$("feedback").className="feedback good"}
- else {$("feedback").textContent=choice===-1?"⏰ Se acabó el tiempo.":"❌ Incorrecto. La respuesta correcta está marcada."; $("feedback").className="feedback bad";if(clicked)clicked.classList.add("wrong")}
- $("nextBtn").classList.remove("hidden");
-}
-$("startBtn").addEventListener("click",start);
-$("nextBtn").addEventListener("click",()=>{index++;if(index<questions.length)load();else finish()});
-$("restartBtn").addEventListener("click",start);
-function finish(){clearInterval(timer);$("game").classList.add("hidden");$("end").classList.remove("hidden");$("finalScore").textContent=score;$("finalText").textContent=`Respondiste correctamente ${score/100} de 5 preguntas.`}
-</script>
 </body>
 </html>
+```
